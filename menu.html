@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>La Capanna Cafe | Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #faf7f2;
+            --bg-card: #ffffff;
+            --text-primary: #2d241c;
+            --text-secondary: #746658;
+            --accent-color: #ba966e;
+            --accent-hover: #9c7b57;
+            --border-color: #ede2d3;
+            --shadow-soft: 0 8px 25px rgba(186, 150, 110, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Preloader Styles */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #faf7f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 1s ease, visibility 1s;
+        }
+
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .loader-cabin {
+            width: 120px;
+            height: auto;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInScale 1s ease forwards;
+        }
+
+        .loader-svg {
+            width: 100%;
+            height: auto;
+            max-height: 120px;
+        }
+
+        .drawing-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 70px;
+            fill: none;
+            stroke: #ba966e;
+            stroke-width: 1.5;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 3s cubic-bezier(0.45, 0, 0.55, 1) forwards, fillText 1s 2s ease forwards;
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes fillText {
+            to {
+                fill: #ba966e;
+                stroke-width: 0;
+            }
+        }
+
+        @keyframes fadeInScale {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .drawing-text {
+                font-size: 50px;
+            }
+
+            .loader-cabin {
+                width: 90px;
+            }
+        }
+
+        /* Fixed Header / Return Home */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background: rgba(250, 247, 242, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .btn-home:hover {
+            background: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 12px rgba(186, 150, 110, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 120px 20px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-logo {
+            width: 110px;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.05));
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            color: var(--text-primary);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        /* Accordion Menu Container */
+        .menu-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 100px;
+        }
+
+        .category-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            scroll-margin-top: 90px;
+        }
+
+        .category-panel:hover {
+            border-color: rgba(186, 150, 110, 0.4);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .category-panel.active {
+            box-shadow: var(--shadow-soft);
+            border-color: var(--accent-color);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 25px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.3s ease;
+            position: relative;
+        }
+
+        .category-header:active {
+            background: #f9f7f4;
+        }
+
+        .header-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .category-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Hide empty category images */
+        .category-img[src=""],
+        .category-img:not([src]) {
+            display: none;
+        }
+
+        .category-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .toggle-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .category-panel.active .toggle-icon {
+            transform: rotate(45deg);
+            background: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+        }
+
+        .category-content {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+        }
+
+        .category-panel.active .category-content {
+            max-height: 1500px;
+            /* Large enough to hold content */
+            opacity: 1;
+        }
+
+        /* Items List (Compact & Clean) */
+        .items-wrapper {
+            padding: 0 25px 25px;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 40px;
+            row-gap: 18px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .item-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            display: none;
+            /* Hidden by default */
+        }
+
+        .menu-item.has-img .item-img {
+            display: block;
+        }
+
+        .item-details {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            position: relative;
+        }
+
+        .item-name {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            padding-right: 10px;
+            background: var(--bg-card);
+            z-index: 2;
+        }
+
+        .item-price {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            padding-left: 10px;
+            background: var(--bg-card);
+            z-index: 2;
+            white-space: nowrap;
+        }
+
+        .item-dots {
+            position: absolute;
+            left: 0;
+            bottom: 5px;
+            width: 100%;
+            border-bottom: 2px dotted #e8dfd3;
+            z-index: 1;
+        }
+
+        /* Mobile Adaptations */
+        @media (max-width: 600px) {
+            .items-grid {
+                grid-template-columns: 1fr;
+                row-gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .category-title {
+                font-size: 1.25rem;
+            }
+
+            .menu-container {
+                padding: 0 15px 80px;
+            }
+
+            .category-header {
+                padding: 18px 20px;
+            }
+
+            .items-wrapper {
+                padding: 0 20px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body class="loading-locked">
+    <div id="preloader" class="preloader">
+        <div class="loader-content">
+            <img src="icon.png" alt="Cabin Logo" class="loader-cabin">
+            <svg class="loader-svg" viewBox="0 0 500 120">
+                <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" class="drawing-text">
+                    ℒ𝒶 𝒞𝒶𝓅𝒶𝓃𝓃𝒶⾕
+                </text>
+            </svg>
+        </div>
+    </div>
+
+    <nav class="top-nav">
+        <a href="index.html" class="btn-home">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            Home
+        </a>
+    </nav>
+
+    <header class="hero">
+        <img src="icon.png" alt="La Capanna" class="hero-logo" onerror="this.style.display='none'">
+        <h1>La Capanna</h1>
+        <p>Menu</p>
+    </header>
+
+    <main class="menu-container" id="menuContainer">
+        <!-- Panels injected by JS -->
+    </main>
+
+    <script>
+        const rawMenu = {
+            "Hot Coffee|categories/hot-coffee-icon.png": [
+                "Single Espresso:50", "Double Espresso:60", "Cortado:50", "Latte:90", "Spanish Latte:105", "Cappuccino:90", "Flat White:75", "Dark Mocha:105", "White Mocha:105", "Single Macchiato:50", "Double Macchiato:65", "Caramel Macchiato:100", "Small Americano:65", "Turkish Coffee:45", "French Coffee:65", "Avocado Coffee:110", "Bombón Coffee:95", "Piccolo Latte:105", "Coffee Dulce de Leche:105", "Hazelnut Mocha Coffee:90"
+            ],
+            "Specialty Coffee|categories/specialty-coffee-icon.png": [
+                "V60:85", "Ice V60:90", "Cold Brew:90"
+            ],
+            "Matcha|categories/matcha-icon.png": [
+                "Frabi Matcha Latte:110", "Matcha Honey Latte:110", "Matcha Strawberry Latte:110", "Matcha Vanilla Latte:110", "Vanilla Coconut Matcha:110", "White Chocolate Matcha:110", "Red Berry Matcha:110", "Salted Caramel Matcha:110"
+            ],
+            "Hot Drinks|categories/hot-drinks-icon.png": [
+                "Hot Cider:100", "Hot Chocolate:100", "Hot Lotus:105", "Hot Oreo Marshmallow:110", "Hot Kinder Mocha:110", "Hot Nutella Marshmallow:110", "Tie Zarda:105", "Arabic Tea:40", "Flavored Tea:65"
+            ],
+            "Iced Coffee|categories/iced-coffee-icon.png": [
+                "Iced Latte:90", "Iced Spanish Latte:105", "Iced Mocha:95", "Iced White Mocha:95", "Iced Caramel Macchiato:95", "Iced Americano:80", "Iced Dulce de Leche:105", "Iced Salted Caramel:100", "Iced Toffee Mocha:105", "Double Chocolate Shaken:105", "Iced Fresh Strawberry:80", "Iced Red Berry Fresh:95", "Iced Blueberry:95"
+            ],
+            "Frappé|categories/frappe-icon.png": [
+                "Frappuccino:120", "Vanilla Frappé:100", "Mocha Frappé:100", "White Mocha Frappé:100", "Caramel Frappé:105", "Spanish Frappé:105", "Hazelnut Nutella Frappé:105", "Salted Caramel Frappé:105", "Toffee Nutella Frappé:120", "Red Berry French Frappé:120", "Blueberry French Frappé:120"
+            ],
+            "Ice Tea|categories/iced-tea-icon.png": [
+                "Ice Tea Strawberry Peach:85", "Ice Tea Peach Strawberry:85", "Ice Green Tea Lemon:85", "Ice Green Tea Lemon Strawberry:85", "Ice Green Tea Strawberry Peach:85", "Ice Lemon Tea Berry ⭐:85", "Ice Tea Lemon Strawberry Cherry:85", "Ice Tea Lemon Peach Cherry:85"
+            ],
+            "Mix Soda & Mojito|categories/mix-soda-mojito-icon.png": [
+                "Classic Mojito:85", "Strawberry Mojito:85", "Blueberry Mojito:80", "Blue Peach Mojito:80", "Pineapple Blue Curaçao:80", "Peach Mojito:80", "Vision Red Bull:85", "Red Bull Flavor:85"
+            ],
+            "Milkshake|categories/milkshake-icon.png": [
+                "Vanilla Milkshake:95", "Kinder Milkshake:95", "Nutella Milkshake:95", "Caramel Milkshake:95", "Chocolate Milkshake:95", "Coffee Milkshake:105", "Lotus Milkshake:95", "Oreo Milkshake:95", "Blueberry Milkshake:100", "Strawberry Milkshake:95"
+            ],
+            "Smoothie|categories/smoothie-icon.png": [
+                "Blueberry Smoothie:85", "Raspberry Smoothie:85", "Lemon Blue Curaçao:85", "Lemon Milk Smoothie:85", "Mango Peach Smoothie:85", "Mango Smoothie:85", "Strawberry Smoothie:85", "Peach Smoothie:85", "Kiwi Smoothie (Seasonal):85", "Watermelon Smoothie:85"
+            ],
+            "Bubble Tea|categories/bubble-tea-icon.png": [
+                "Peach Bubba:30", "Strawberry Bubba:30", "Blueberry Bubba:30", "Green Apple Bubba:30", "Coffee Bubba:30"
+            ],
+            "Soft Drinks|categories/soft-drinks-icon.png": [
+                "Small Water:15", "Classic Red Bull:80", "Red Bull Sugar Free:80", "Red Bull Flavor:80"
+            ],
+            "Desserts|categories/desserts-icon.png": [
+                "Cheesecake:85", "Tiramisu:100", "Despacito Cake:150", "Molten Cake:100", "Chocolate Tart:120", "Brownies:130"
+            ],
+            "Extras & Add-ons|categories/extras-addons-icon.png": [
+                "Extra Syrup:20", "Extra Sauce:15", "Extra Espresso:20", "Extra Marshmallow:20", "Extra Cup of Ice:10", "Honey:20", "Condensed Milk:15", "Full Cream Milk (Alpro):40", "Alpro Oat Milk:40", "Alpro Almond Milk:40", "Alpro Coconut Milk:40", "Alpro Lactose Free Milk:40"
+            ]
+        };
+
+        function renderMenu() {
+            const container = document.getElementById('menuContainer');
+
+            for (const [catKey, items] of Object.entries(rawMenu)) {
+                const [catName, catImage] = catKey.split('|');
+
+                // Generate items HTML
+                const itemsHtml = items.map(itemStr => {
+                    const parts = itemStr.split(':');
+                    const name = typeof parts[0] === 'string' ? parts[0] : '';
+                    const price = typeof parts[1] === 'string' ? parts[1] : '';
+                    const img = parts[2] || ''; // Optional 3rd part for image
+
+                    return `
+                    <div class="menu-item ${img ? 'has-img' : ''}">
+                        ${img ? `<img src="${img}" class="item-img" alt="${name}">` : `<img src="" class="item-img" alt="${name}">`}
+                        <div class="item-details">
+                            <span class="item-dots"></span>
+                            <span class="item-name">${name}</span>
+                            <span class="item-price">${price} EGP</span>
+                        </div>
+                    </div>
+                `;
+                }).join('');
+
+                // Build Panel
+                const panel = document.createElement('div');
+                panel.className = `category-panel`;
+
+                panel.innerHTML = `
+                <div class="category-header" onclick="togglePanel(this)">
+                    <div class="header-info">
+                        ${catImage ? `<img src="${catImage}" alt="${catName}" class="category-img" loading="lazy">` : `<div class="category-img-placeholder"></div>`}
+                        <h2 class="category-title">${catName}</h2>
+                    </div>
+                    <div class="toggle-icon">+</div>
+                </div>
+                <div class="category-content">
+                    <div class="items-wrapper">
+                        <div class="items-grid">
+                            ${itemsHtml}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+                container.appendChild(panel);
+            }
+        }
+
+        // Toggle Accordion Logic
+        function togglePanel(headerElement) {
+            const panel = headerElement.parentElement;
+            const isActive = panel.classList.contains('active');
+
+            // Close all other panels
+            document.querySelectorAll('.category-panel').forEach(p => {
+                p.classList.remove('active');
+            });
+
+            if (!isActive) {
+                panel.classList.add('active');
+
+                // Wait for other panels to start closing before scrolling
+                setTimeout(() => {
+                    panel.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 400); // Slightly longer delay for layout shift stability
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', renderMenu);
+    </script>
+    <script>
+        window.addEventListener('load', function () {
+            const loader = document.getElementById('preloader');
+            setTimeout(() => {
+                if (loader) loader.classList.add('fade-out');
+                document.body.classList.remove('loading-locked');
+            }, 3500);
+        });
+    </script>
+    <footer style="
+  width:100%;
+  text-align:center;
+  padding:18px 10px;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color:#e2e8f0;
+  font-family:Arial, sans-serif;
+  font-size:14px;
+  letter-spacing:0.5px;
+">
+        <span>
+            Developed by
+            <a href="https://pro-mw.github.io/Mohamed-Walid/" target="_blank" style="
+      font-weight:bold;
+      text-decoration: underline;
+      background: linear-gradient(45deg, #38bdf8, #1e3a8a, #0ea5e9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: 0.3s;
+    " onmouseover="this.style.textShadow='0 0 12px rgba(56,189,248,0.8)'" onmouseout="this.style.textShadow='none'">
+                Mind Web
+            </a>
+        </span>
+    </footer>
+</body>
+
+</html>
