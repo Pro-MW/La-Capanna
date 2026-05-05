@@ -434,49 +434,51 @@
     </main>
 
     <script>
-        const rawMenu = {
+       const rawMenu = {
             "Hot Coffee|categories/hot-coffee-icon.png": [
-                "Single Espresso:50", "Double Espresso:60", "Cortado:50", "Latte:90", "Spanish Latte:105", "Cappuccino:90", "Flat White:75", "Dark Mocha:105", "White Mocha:105", "Single Macchiato:50", "Double Macchiato:65", "Caramel Macchiato:100", "Small Americano:65", "Turkish Coffee:45", "French Coffee:65", "Avocado Coffee:110", "Bombón Coffee:95", "Piccolo Latte:105", "Coffee Dulce de Leche:105", "Hazelnut Mocha Coffee:90"
+                "Single Espresso:50", "Double Espresso:60", "Cortado:50", "Piccolo Latte:105", "Latte:90", "Flat White:75", "Cappuccino:90", "Spanish Latte:105", "Caramel Macchiato:100", "Single Macchiato:50", "Double Macchiato:65", "Dark Mocha:105", "White Mocha:105", "Hazelnut Mocha Coffee:90", "Avocado Coffee:110", "Bombón Coffee:95", "Coffee Dulce de Leche:105", "Small Americano:65", "French Coffee:65", "Turkish Coffee:45"
             ],
             "Specialty Coffee|categories/specialty-coffee-icon.png": [
                 "V60:85", "Ice V60:90", "Cold Brew:90"
             ],
             "Matcha|categories/matcha-icon.png": [
-                "Frabi Matcha Latte:110", "Matcha Honey Latte:110", "Matcha Strawberry Latte:110", "Matcha Vanilla Latte:110", "Vanilla Coconut Matcha:110", "White Chocolate Matcha:110", "Red Berry Matcha:110", "Salted Caramel Matcha:110"
+                "Frabi Matcha Latte:110", "Matcha Honey Latte:110", "Matcha Vanilla Latte:110", "Matcha Strawberry Latte:110", "Vanilla Coconut Matcha:110", "White Chocolate Matcha:110", "Salted Caramel Matcha:110", "Red Berry Matcha:110"
             ],
             "Hot Drinks|categories/hot-drinks-icon.png": [
-                "Hot Cider:100", "Hot Chocolate:100", "Hot Lotus:105", "Hot Oreo Marshmallow:110", "Hot Kinder Mocha:110", "Hot Nutella Marshmallow:110", "Tie Zarda:105", "Arabic Tea:40", "Flavored Tea:65"
+                "Hot Chocolate:100", "Hot Lotus:105", "Hot Kinder Mocha:110", "Hot Nutella Marshmallow:110", "Hot Oreo Marshmallow:110", "Hot Cider:100", "Tie Zarda:105", "Arabic Tea:40", "Flavored Tea:65"
             ],
             "Iced Coffee|categories/iced-coffee-icon.png": [
-                "Iced Latte:90", "Iced Spanish Latte:105", "Iced Mocha:95", "Iced White Mocha:95", "Iced Caramel Macchiato:95", "Iced Americano:80", "Iced Dulce de Leche:105", "Iced Salted Caramel:100", "Iced Toffee Mocha:105", "Double Chocolate Shaken:105", "Iced Fresh Strawberry:80", "Iced Red Berry Fresh:95", "Iced Blueberry:95"
+                "Iced Latte:90", "Iced Spanish Latte:105", "Iced Mocha:95", "Iced White Mocha:95", "Iced Nutella:105", "Iced Pistachio:105", "Iced Caramel Macchiato:95", "Iced Dulce de Leche:105", "Iced Salted Caramel:100", "Iced Toffee Mocha:105", "Iced Blueberry:95", "Iced Fresh Strawberry:80", "Iced Red Berry Fresh:95", "Double Chocolate Shaken:105", "Iced Americano:80"
             ],
             "Frappé|categories/frappe-icon.png": [
-                "Frappuccino:120", "Vanilla Frappé:100", "Mocha Frappé:100", "White Mocha Frappé:100", "Caramel Frappé:105", "Spanish Frappé:105", "Hazelnut Nutella Frappé:105", "Salted Caramel Frappé:105", "Toffee Nutella Frappé:120", "Red Berry French Frappé:120", "Blueberry French Frappé:120"
+                "Frappé Coffe:90", "Frappé Luts:100", "Frappé Pistachio:120", "Frappuccino:120", "Vanilla Frappé:100", "Mocha Frappé:100", "White Mocha Frappé:100", "Caramel Frappé:105", "Spanish Frappé:105", "Hazelnut Nutella Frappé:105", "Salted Caramel Frappé:105", "Toffee Nutella Frappé:120", "Red Berry French Frappé:120", "Blueberry French Frappé:120"
             ],
             "Ice Tea|categories/iced-tea-icon.png": [
-                "Ice Tea Strawberry Peach:85", "Ice Tea Peach Strawberry:85", "Ice Green Tea Lemon:85", "Ice Green Tea Lemon Strawberry:85", "Ice Green Tea Strawberry Peach:85", "Ice Lemon Tea Berry:85", "Ice Tea Lemon Strawberry Cherry:85", "Ice Tea Lemon Peach Cherry:85"
+                "Ice Tea Strawberry Peach:85", "Ice Tea Peach Strawberry:85", "Ice Green Tea Lemon:85", "Ice Green Tea Lemon Strawberry:85", "Ice Green Tea Strawberry Peach:85", "Ice Lemon Tea Berry:85", "Ice Tea Lemon Strawberry Cherry:85", "Ice Tea Lemon Peach Cherry:85", "Ice Tea Pomegranate:85", "Ice Tea Passion Fruit:85"
             ],
             "Mix Soda & Mojito|categories/mix-soda-mojito-icon.png": [
-                "Classic Mojito:85", "Strawberry Mojito:85", "Blueberry Mojito:80", "Blue Peach Mojito:80", "Pineapple Blue Curaçao:80", "Peach Mojito:80", "Vision Red Bull:85", "Mojito Passion:85", "Blue Passion Mojito:85", "Red Bull Flavor:85"
+                "Classic Mojito:85", "Mojito Lemon Mint:85", "Strawberry Mojito:85", "Blueberry Mojito:85", "Peach Mojito:80", "Blue Peach Mojito:80", "Mojito Passion:85", "Blue Passion Mojito:85", "Sun Shine:85", "Scotch Mint:85", "Sunrise:85", "Mojito La capanna:150", "Vision Red Bull:85", "Red Bull Flavor:85", "Pineapple Blue Curaçao:80"
             ],
             "Milkshake|categories/milkshake-icon.png": [
-                "Vanilla Milkshake:95", "Kinder Milkshake:95", "Nutella Milkshake:95", "Caramel Milkshake:95", "Chocolate Milkshake:95", "Coffee Milkshake:105", "Lotus Milkshake:95", "Oreo Milkshake:95", "Blueberry Milkshake:100", "Strawberry Milkshake:95"
+                "Vanilla Milkshake:95", "Chocolate Milkshake:95", "Strawberry Milkshake:95", "Mango Milkshake:95", "Blueberry Milkshake:105", "Caramel Milkshake:95", "Lotus Milkshake:95", "Kinder Milkshake:95", "Nutella Milkshake:95", "Oreo Milkshake:95", "Coffee Milkshake:105", "La Capanna Milkshake:130"
             ],
             "Smoothie|categories/smoothie-icon.png": [
-                "Blueberry Smoothie:85", "Raspberry Smoothie:85", "Lemon Blue Curaçao:85", "Lemon Mint Smoothie:85", "Mango Peach Smoothie:85", "Mango Smoothie:85", "Strawberry Smoothie:85", "Peach Smoothie:85", "Kiwi Smoothie (Seasonal):85", "Watermelon Smoothie:85", "Peach Passion Smoothie:85", "Passion Strawberry Smoothie:85", "Passion Smoothie:85"
-
+                "Mango Smoothie:90", "Strawberry Smoothie:90", "Blueberry Smoothie:90", "Raspberry Smoothie:90", "Peach Smoothie:90", "Mango Peach Smoothie:90", "Watermelon Smoothie:90", "Kiwi Smoothie (Seasonal):90", "Passion Smoothie:90", "Peach Passion Smoothie:85", "Passion Strawberry Smoothie:85", "Lemon Mint Smoothie:75", "Lemon Smoothie:70", "Lemon Blue Curaçao:85", "Guava Smoothie:90", "Piña Colada Smoothie:130"
+            ],
+            "Fresh Juices|categories/fresh-juices-icon.png": [
+                "Mango Juice:75", "Strawberry Juice:75", "Guava Juice:75", "Orange Juice:75", "Lemon Juice:70", "Lemon Mint Juice:75", "Banana with Milk:85"
             ],
             "Bubble Tea|categories/bubble-tea-icon.png": [
                 "Peach Bubba:30", "Strawberry Bubba:30", "Blueberry Bubba:30", "Green Apple Bubba:30", "Coffee Bubba:30"
             ],
             "Soft Drinks|categories/soft-drinks-icon.png": [
-                "Small Water:15", "Classic Red Bull:80", "Red Bull Sugar Free:80", "Red Bull Flavor:80"
+                "Small Water:15", "Seven Up:40", "Pepsi:40", "Twist:40", "Classic Red Bull:85", "Red Bull Sugar Free:85", "Red Bull Flavor:85"
             ],
             "Desserts|categories/desserts-icon.png": [
-                "Cheesecake:85", "Tiramisu:100", "Despacito Cake:150", "Molten Cake:100", "Chocolate Tart:120", "Brownies:130"
+                "Cheesecake:80", "Tiramisu:75", "Molten Cake:100", "Cookies:60", "Honey Cake:60", "Red Velvet:65", "Galaxy:75", "Chocolate Tart:120", "Despacito Cake:150", "Brownies:130"
             ],
             "Extras & Add-ons|categories/extras-addons-icon.png": [
-                "Extra Syrup:20", "Extra Sauce:15", "Extra Espresso:20", "Extra Marshmallow:20", "Extra Cup of Ice:10", "Honey:20", "Condensed Milk:15", "Full Cream Milk (Alpro):40", "Alpro Oat Milk:40", "Alpro Almond Milk:40", "Alpro Coconut Milk:40", "Alpro Lactose Free Milk:40"
+                "Extra Espresso:20", "Extra Syrup:40", "Extra Sauce:15", "Extra Marshmallow:30", "Extra Cup of Ice:15", "Ice Cream:35", "Honey:20", "Condensed Milk:15", "Full Cream Milk (Alpro):40", "Alpro Oat Milk:40", "Alpro Almond Milk:40", "Alpro Coconut Milk:40", "Alpro Lactose Free Milk:40"
             ],
             "Shisha|categories/shisha-icon.png": [
                 "Fruit Shisha:140", "Mix Shisha:150", "Li Shisha Tebi:15"
